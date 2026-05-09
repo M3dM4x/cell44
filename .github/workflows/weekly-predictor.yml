@@ -1,0 +1,59 @@
+name: Weekly Forex Predictor
+
+# Friday 22:00 Casablanca = Friday 21:00 UTC (Morocco is UTC+1, no DST)
+# GitHub cron is in UTC. Cron syntax: minute hour day-of-month month day-of-week
+# day-of-week: 0=Sun, 1=Mon, ... 5=Fri, 6=Sat
+on:
+  schedule:
+    - cron: '0 21 * * 5'
+  workflow_dispatch:  # Allow manual trigger from Actions tab
+
+permissions:
+  contents: write  # Needed to commit predictions.json back to repo
+
+jobs:
+  generate:
+    name: Generate predictions
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+          cache-dependency-path: 'pipeline/requirements.txt'
+
+      - name: Install dependencies
+        working-directory: pipeline
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Generate weekly predictions
+        working-directory: pipeline
+        run: python generate_predictions.py
+        # Reads pipeline/data/event_statistics.csv (historical stats, committed once)
+        # Scrapes next 7 days from Forex Factory (curl_cffi bypasses Cloudflare)
+        # Writes pipeline/data/predictions.json
+
+      - name: Copy predictions to web root
+        run: cp pipeline/data/predictions.json predictions.json
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add predictions.json
+          if git diff --staged --quiet; then
+            echo "No changes — predictions identical to previous run."
+          else
+            TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M UTC")
+            git commit -m "chore: weekly predictions update ($TIMESTAMP) [skip ci]"
+            git push
+            echo "✓ Pushed new predictions.json"
+          fi
