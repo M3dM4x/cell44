@@ -1,0 +1,290 @@
+{
+  "generated_at": "2026-05-03T23:54:18.358599",
+  "week_start": "2026-05-03",
+  "week_end": "2026-05-10",
+  "total_events": 6,
+  "events": [
+    {
+      "datetime": "2026-05-04T05:30:00",
+      "date": "2026-05-04",
+      "day": "Monday",
+      "time": "05:30",
+      "currency": "AUD",
+      "event": "Cash Rate",
+      "category": "RBA",
+      "forecast": "4.35%",
+      "previous": "4.10%",
+      "direction": {
+        "forecast_num": 4.35,
+        "previous_num": 4.1,
+        "bias": "bullish",
+        "bias_ar": "إيجابي لـ AUD",
+        "confidence": "medium",
+        "reasoning_ar": "المتوقع 4.35 أعلى من السابق 4.1 — نمو اقتصادي يقوي العملة"
+      },
+      "pairs": [
+        {
+          "pair": "AUDUSD",
+          "mean_range": 57.6,
+          "median_range": 53.6,
+          "p25": 40.4,
+          "p75": 66.9,
+          "max_observed": 145.4,
+          "sample_size": 61,
+          "confidence": "High",
+          "vs_normal_day": 0.87,
+          "direction": "up",
+          "direction_ar": "صعود محتمل لـ AUDUSD"
+        }
+      ]
+    },
+    {
+      "datetime": "2026-05-05T06:30:00",
+      "date": "2026-05-05",
+      "day": "Tuesday",
+      "time": "06:30",
+      "currency": "AUD",
+      "event": "RBA Press Conference",
+      "category": "RBA",
+      "forecast": "",
+      "previous": "",
+      "direction": {
+        "forecast_num": null,
+        "previous_num": null,
+        "bias": "neutral",
+        "bias_ar": "محايد",
+        "confidence": "low",
+        "reasoning_ar": "لم تتوفر بيانات Forecast أو Previous للتحليل المسبق"
+      },
+      "pairs": [
+        {
+          "pair": "AUDUSD",
+          "mean_range": 57.6,
+          "median_range": 53.6,
+          "p25": 40.4,
+          "p75": 66.9,
+          "max_observed": 145.4,
+          "sample_size": 61,
+          "confidence": "High",
+          "vs_normal_day": 0.87,
+          "direction": "neutral",
+          "direction_ar": "اتجاه غير محدد"
+        }
+      ]
+    },
+    {
+      "datetime": "2026-05-05T15:00:00",
+      "date": "2026-05-05",
+      "day": "Tuesday",
+      "time": "15:00",
+      "currency": "USD",
+      "event": "ISM Services PMI",
+      "category": "PMI",
+      "forecast": "53.8",
+      "previous": "54.0",
+      "direction": {
+        "forecast_num": 53.8,
+        "previous_num": 54.0,
+        "bias": "neutral",
+        "bias_ar": "محايد",
+        "confidence": "low",
+        "reasoning_ar": "الفارق بين المتوقع (53.8) والسابق (54.0) صغير جداً، لا اتجاه واضح"
+      },
+      "pairs": [
+        {
+          "pair": "USDJPY",
+          "mean_range": 122.3,
+          "median_range": 115.6,
+          "p25": 78.3,
+          "p75": 148.4,
+          "max_observed": 422.1,
+          "sample_size": 108,
+          "confidence": "High",
+          "vs_normal_day": 0.84,
+          "direction": "neutral",
+          "direction_ar": "اتجاه غير محدد"
+        },
+        {
+          "pair": "GBPUSD",
+          "mean_range": 89.6,
+          "median_range": 83.8,
+          "p25": 62.5,
+          "p75": 105.7,
+          "max_observed": 207.2,
+          "sample_size": 109,
+          "confidence": "High",
+          "vs_normal_day": 0.94,
+          "direction": "neutral",
+          "direction_ar": "اتجاه غير محدد"
+        },
+        {
+          "pair": "EURUSD",
+          "mean_range": 71.1,
+          "median_range": 62.8,
+          "p25": 48.5,
+          "p75": 83.5,
+          "max_observed": 250.9,
+          "sample_size": 109,
+          "confidence": "High",
+          "vs_normal_day": 0.91,
+          "direction": "neutral",
+          "direction_ar": "اتجاه غير محدد"
+        },
+        {
+          "pair": "USDCAD",
+          "mean_range": 67.1,
+          "median_range": 60.4,
+          "p25": 47.5,
+          "p75": 76.7,
+          "max_observed": 243.9,
+          "sample_size": 108,
+          "confidence": "High",
+          "vs_normal_day": 0.89,
+          "direction": "neutral",
+          "direction_ar": "اتجاه غير محدد"
+        },
+        {
+          "pair": "USDCHF",
+          "mean_range": 61.5,
+          "median_range": 54.5,
+          "p25": 44.9,
+          "p75": 71.2,
+          "max_observed": 239.7,
+          "sample_size": 108,
+          "confidence": "High",
+          "vs_normal_day": 0.9,
+          "direction": "neutral",
+          "direction_ar": "اتجاه غير محدد"
+        },
+        {
+          "pair": "AUDUSD",
+          "mean_range": 57.3,
+          "median_range": 53.7,
+          "p25": 42.3,
+          "p75": 67.4,
+          "max_observed": 145.4,
+          "sample_size": 108,
+          "confidence": "High",
+          "vs_normal_day": 0.89,
+          "direction": "neutral",
+          "direction_ar": "اتجاه غير محدد"
+        },
+        {
+          "pair": "NZDUSD",
+          "mean_range": 50.2,
+          "median_range": 46.0,
+          "p25": 39.1,
+          "p75": 58.3,
+          "max_observed": 129.8,
+          "sample_size": 108,
+          "confidence": "High",
+          "vs_normal_day": 0.84,
+          "direction": "neutral",
+          "direction_ar": "اتجاه غير محدد"
+        }
+      ]
+    },
+    {
+      "datetime": "2026-05-05T23:45:00",
+      "date": "2026-05-05",
+      "day": "Tuesday",
+      "time": "23:45",
+      "currency": "NZD",
+      "event": "Employment Change q/q",
+      "category": "Other",
+      "forecast": "0.3%",
+      "previous": "0.5%",
+      "direction": {
+        "forecast_num": 0.3,
+        "previous_num": 0.5,
+        "bias": "bearish",
+        "bias_ar": "سلبي لـ NZD",
+        "confidence": "high",
+        "reasoning_ar": "المتوقع 0.3 أقل من السابق 0.5 — تباطؤ اقتصادي يضعف العملة"
+      },
+      "pairs": [
+        {
+          "pair": "NZDUSD",
+          "mean_range": 49.5,
+          "median_range": 45.2,
+          "p25": 35.8,
+          "p75": 59.8,
+          "max_observed": 222.9,
+          "sample_size": 231,
+          "confidence": "High",
+          "vs_normal_day": 0.8,
+          "direction": "down",
+          "direction_ar": "هبوط محتمل لـ NZDUSD"
+        }
+      ]
+    },
+    {
+      "datetime": "2026-05-08T13:20:00",
+      "date": "2026-05-08",
+      "day": "Friday",
+      "time": "13:20",
+      "currency": "GBP",
+      "event": "BOE Gov Bailey Speaks",
+      "category": "BOE",
+      "forecast": "",
+      "previous": "",
+      "direction": {
+        "forecast_num": null,
+        "previous_num": null,
+        "bias": "neutral",
+        "bias_ar": "محايد",
+        "confidence": "low",
+        "reasoning_ar": "لم تتوفر بيانات Forecast أو Previous للتحليل المسبق"
+      },
+      "pairs": [
+        {
+          "pair": "GBPUSD",
+          "mean_range": 87.1,
+          "median_range": 84.1,
+          "p25": 64.5,
+          "p75": 104.6,
+          "max_observed": 164.9,
+          "sample_size": 70,
+          "confidence": "High",
+          "vs_normal_day": 0.87,
+          "direction": "neutral",
+          "direction_ar": "اتجاه غير محدد"
+        }
+      ]
+    },
+    {
+      "datetime": "2026-05-08T13:30:00",
+      "date": "2026-05-08",
+      "day": "Friday",
+      "time": "13:30",
+      "currency": "CAD",
+      "event": "Employment Change",
+      "category": "Other",
+      "forecast": "5.1K",
+      "previous": "14.1K",
+      "direction": {
+        "forecast_num": 5100.0,
+        "previous_num": 14100.0,
+        "bias": "bearish",
+        "bias_ar": "سلبي لـ CAD",
+        "confidence": "high",
+        "reasoning_ar": "المتوقع 5100.0 أقل من السابق 14100.0 — تباطؤ اقتصادي يضعف العملة"
+      },
+      "pairs": [
+        {
+          "pair": "USDCAD",
+          "mean_range": 65.3,
+          "median_range": 58.0,
+          "p25": 45.1,
+          "p75": 75.7,
+          "max_observed": 215.8,
+          "sample_size": 216,
+          "confidence": "High",
+          "vs_normal_day": 0.82,
+          "direction": "up",
+          "direction_ar": "صعود محتمل لـ USDCAD"
+        }
+      ]
+    }
+  ]
+}
