@@ -1,15 +1,13 @@
 name: Weekly Forex Predictor
 
 # Friday 22:00 Casablanca = Friday 21:00 UTC (Morocco is UTC+1, no DST)
-# GitHub cron is in UTC. Cron syntax: minute hour day-of-month month day-of-week
-# day-of-week: 0=Sun, 1=Mon, ... 5=Fri, 6=Sat
 on:
   schedule:
     - cron: '0 21 * * 5'
   workflow_dispatch:  # Allow manual trigger from Actions tab
 
 permissions:
-  contents: write  # Needed to commit predictions.json back to repo
+  contents: write
 
 jobs:
   generate:
@@ -37,14 +35,23 @@ jobs:
       - name: Generate weekly predictions
         working-directory: pipeline
         run: python generate_predictions.py
-        # Reads pipeline/data/event_statistics.csv (historical stats, committed once)
-        # Scrapes next 7 days from Forex Factory (curl_cffi bypasses Cloudflare)
-        # Writes pipeline/data/predictions.json
 
-      - name: Copy predictions to web root
+      - name: Validate prediction count
+        id: validate
+        run: |
+          EVENT_COUNT=$(python -c "import json; data=json.load(open('pipeline/data/predictions.json')); print(len(data.get('events', [])))")
+          echo "Events generated: $EVENT_COUNT"
+          echo "events=$EVENT_COUNT" >> $GITHUB_OUTPUT
+          if [ "$EVENT_COUNT" -lt 1 ]; then
+            echo "::warning::Scraper returned 0 events — likely Cloudflare blocked the GitHub Actions runner IP. Skipping commit to preserve last good predictions.json."
+          fi
+
+      - name: Copy predictions to web root (only if events found)
+        if: steps.validate.outputs.events != '0'
         run: cp pipeline/data/predictions.json predictions.json
 
       - name: Commit and push if changed
+        if: steps.validate.outputs.events != '0'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -57,3 +64,9 @@ jobs:
             git push
             echo "✓ Pushed new predictions.json"
           fi
+
+      - name: Skip notice (if no events)
+        if: steps.validate.outputs.events == '0'
+        run: |
+          echo "::notice::Workflow completed but skipped commit. Last good predictions.json preserved on the live site."
+          echo "If this happens repeatedly, the scraper may need a residential proxy or alternate data source."
