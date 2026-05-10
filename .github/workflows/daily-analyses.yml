@@ -90,7 +90,7 @@ jobs:
             echo "No changes to analyses.json"
           else
             TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M UTC")
-            git commit -m "chore: analyses update ($TIMESTAMP) [skip ci]"
+            git commit -m "chore: analyses update ($TIMESTAMP)"
             git push
             echo "✓ Pushed updated analyses.json"
           fi
