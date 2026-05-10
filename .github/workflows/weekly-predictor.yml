@@ -4,7 +4,7 @@ name: Weekly Forex Predictor
 on:
   schedule:
     - cron: '0 21 * * 5'
-  workflow_dispatch:  # Allow manual trigger from Actions tab
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -60,7 +60,7 @@ jobs:
             echo "No changes — predictions identical to previous run."
           else
             TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M UTC")
-            git commit -m "chore: weekly predictions update ($TIMESTAMP) [skip ci]"
+            git commit -m "chore: weekly predictions update ($TIMESTAMP)"
             git push
             echo "✓ Pushed new predictions.json"
           fi
@@ -69,4 +69,3 @@ jobs:
         if: steps.validate.outputs.events == '0'
         run: |
           echo "::notice::Workflow completed but skipped commit. Last good predictions.json preserved on the live site."
-          echo "If this happens repeatedly, the scraper may need a residential proxy or alternate data source."
