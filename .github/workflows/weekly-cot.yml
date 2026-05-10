@@ -1,0 +1,71 @@
+name: Weekly COT Refresh
+
+# Monday 09:00 Casablanca = Monday 08:00 UTC
+on:
+  schedule:
+    - cron: '0 8 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: cell44-cot
+  cancel-in-progress: false
+
+jobs:
+  cot:
+    name: Refresh COT data
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Fetch COT + generate insights
+        working-directory: pipeline
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python run_cot.py
+
+      - name: Validate output
+        id: validate
+        run: |
+          if [ ! -f pipeline/data/cot.json ]; then
+            echo "::error::cot.json not produced"
+            exit 1
+          fi
+          PAIRS=$(python -c "import json; d=json.load(open('pipeline/data/cot.json')); print(len(d.get('pairs', {})))")
+          echo "Pairs in file: $PAIRS"
+          echo "pairs=$PAIRS" >> $GITHUB_OUTPUT
+          if [ "$PAIRS" -lt 1 ]; then
+            echo "::warning::No pairs in cot.json — skipping commit"
+          fi
+
+      - name: Copy to web root
+        if: steps.validate.outputs.pairs != '0'
+        run: cp pipeline/data/cot.json cot.json
+
+      - name: Commit and push
+        if: steps.validate.outputs.pairs != '0'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add cot.json
+          if git diff --staged --quiet; then
+            echo "No changes to cot.json"
+          else
+            TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M UTC")
+            git commit -m "chore: weekly COT refresh ($TIMESTAMP) [skip ci]"
+            git push
+            echo "✓ Pushed updated cot.json"
+          fi

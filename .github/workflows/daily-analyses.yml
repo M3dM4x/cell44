@@ -1,0 +1,96 @@
+name: Daily Forex Analyses
+
+# Casablanca = UTC+1 year-round (no DST). Schedules use UTC.
+#   05:00 UTC = 06:00 Casablanca → full
+#   09:00 UTC = 10:00 Casablanca → quick
+#   12:00 UTC = 13:00 Casablanca → full
+#   15:00 UTC = 16:00 Casablanca → quick
+on:
+  schedule:
+    - cron: '0 5 * * *'
+    - cron: '0 9 * * *'
+    - cron: '0 12 * * *'
+    - cron: '0 15 * * *'
+  workflow_dispatch:
+    inputs:
+      type:
+        description: 'Analysis type (full or quick) — manual run only'
+        required: true
+        default: 'quick'
+        type: choice
+        options:
+          - full
+          - quick
+
+permissions:
+  contents: write
+
+concurrency:
+  group: cell44-analyses
+  cancel-in-progress: false
+
+jobs:
+  analyze:
+    name: Run analysis
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run analysis (cron-driven)
+        if: github.event_name == 'schedule'
+        working-directory: pipeline
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          CRON_SCHEDULE: ${{ github.event.schedule }}
+        run: python run_analyses.py
+
+      - name: Run analysis (manual dispatch)
+        if: github.event_name == 'workflow_dispatch'
+        working-directory: pipeline
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python run_analyses.py --type ${{ github.event.inputs.type }}
+
+      - name: Validate output
+        id: validate
+        run: |
+          if [ ! -f pipeline/data/analyses.json ]; then
+            echo "::error::analyses.json not produced"
+            exit 1
+          fi
+          SLOTS=$(python -c "import json; d=json.load(open('pipeline/data/analyses.json')); print(len(d.get('slots', [])))")
+          echo "Slots in file: $SLOTS"
+          echo "slots=$SLOTS" >> $GITHUB_OUTPUT
+          if [ "$SLOTS" -lt 1 ]; then
+            echo "::warning::No slots in analyses.json — skipping commit"
+          fi
+
+      - name: Copy to web root
+        if: steps.validate.outputs.slots != '0'
+        run: cp pipeline/data/analyses.json analyses.json
+
+      - name: Commit and push
+        if: steps.validate.outputs.slots != '0'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add analyses.json
+          if git diff --staged --quiet; then
+            echo "No changes to analyses.json"
+          else
+            TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M UTC")
+            git commit -m "chore: analyses update ($TIMESTAMP) [skip ci]"
+            git push
+            echo "✓ Pushed updated analyses.json"
+          fi
