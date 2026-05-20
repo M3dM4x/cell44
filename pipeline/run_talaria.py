@@ -27,13 +27,13 @@ Output JSON structure:
 """
 
 import json
+import math
 import os
 import sys
 import time
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Dict, List, Optional
-
 import yfinance as yf
 import pandas as pd
 import numpy as np
@@ -145,6 +145,20 @@ def fetch_with_retry(ticker: str, period: str = "60d", interval: str = "1d", ret
         time.sleep(wait)
     print(f"  ✗ {ticker} failed after {retries} attempts: {last_err}")
     return None
+
+
+# ────────────────────────────────────────────
+# NaN cleaner (NaN is invalid JSON — browsers reject it)
+# ────────────────────────────────────────────
+def _clean_nan(obj):
+    """Recursively replace NaN/Infinity with None for valid JSON output."""
+    if isinstance(obj, dict):
+        return {k: _clean_nan(v) for k, v in obj.items()}
+    if isinstance(obj, list):
+        return [_clean_nan(v) for v in obj]
+    if isinstance(obj, float) and (math.isnan(obj) or math.isinf(obj)):
+        return None
+    return obj
 
 
 # ────────────────────────────────────────────
@@ -567,12 +581,16 @@ def main():
         "sentiment": sentiment,
     }
 
+    # Clean NaN/Infinity values before JSON serialization
+    # (NaN is valid Python but INVALID JSON — browsers reject "NaN" tokens)
+    cleaned_output = _clean_nan(output)
+
     # Atomic write: write to .tmp first, then atomic rename via os.replace.
     # This guarantees talaria.json is either fully written or unchanged —
     # never partially written, even if the script is killed mid-write.
     tmp_file = OUTPUT_FILE.with_suffix('.json.tmp')
     tmp_file.write_text(
-        json.dumps(output, ensure_ascii=False, indent=2),
+        json.dumps(cleaned_output, ensure_ascii=False, indent=2),
         encoding="utf-8"
     )
     os.replace(tmp_file, OUTPUT_FILE)
