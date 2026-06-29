@@ -1,128 +1,60 @@
 {
-  "generated_at": "2026-06-22T00:58:51.930693",
-  "week_start": "2026-06-22",
-  "week_end": "2026-06-29",
-  "total_events": 4,
+  "generated_at": "2026-06-29T03:36:07.735824",
+  "week_start": "2026-06-29",
+  "week_end": "2026-07-06",
+  "total_events": 2,
   "events": [
     {
-      "datetime": "2026-06-22T13:30:00",
-      "date": "2026-06-22",
-      "day": "Monday",
+      "datetime": "2026-06-30T13:30:00",
+      "date": "2026-06-30",
+      "day": "Tuesday",
       "time": "13:30",
       "currency": "CAD",
-      "event": "CPI m/m",
-      "category": "CPI",
-      "forecast": "0.7%",
-      "previous": "0.4%",
+      "event": "GDP m/m",
+      "category": "GDP",
+      "forecast": "0.4%",
+      "previous": "-0.1%",
       "direction": {
-        "forecast_num": 0.7,
-        "previous_num": 0.4,
+        "forecast_num": 0.4,
+        "previous_num": -0.1,
         "bias": "bullish",
         "bias_ar": "إيجابي لـ CAD",
         "confidence": "high",
-        "reasoning_ar": "المتوقع 0.7 أعلى من السابق 0.4 — نمو اقتصادي يقوي العملة"
+        "reasoning_ar": "المتوقع 0.4 أعلى من السابق -0.1 — نمو اقتصادي يقوي العملة"
       },
       "pairs": [
         {
           "pair": "USDCAD",
-          "mean_range": 66.6,
-          "median_range": 59.3,
-          "p25": 48.5,
-          "p75": 73.5,
-          "max_observed": 206.1,
-          "sample_size": 69,
+          "mean_range": 64.1,
+          "median_range": 59.1,
+          "p25": 46.2,
+          "p75": 76.1,
+          "max_observed": 120.9,
+          "sample_size": 68,
           "confidence": "High",
-          "vs_normal_day": 0.86,
+          "vs_normal_day": 0.84,
           "direction": "down",
           "direction_ar": "هبوط محتمل لـ USDCAD"
         }
       ]
     },
     {
-      "datetime": "2026-06-23T02:30:00",
-      "date": "2026-06-23",
-      "day": "Tuesday",
-      "time": "02:30",
-      "currency": "AUD",
-      "event": "CPI m/m",
-      "category": "CPI",
-      "forecast": "-0.4%",
-      "previous": "0.4%",
-      "direction": {
-        "forecast_num": -0.4,
-        "previous_num": 0.4,
-        "bias": "bearish",
-        "bias_ar": "سلبي لـ AUD",
-        "confidence": "high",
-        "reasoning_ar": "المتوقع -0.4 أقل من السابق 0.4 — تباطؤ اقتصادي يضعف العملة"
-      },
-      "pairs": [
-        {
-          "pair": "AUDUSD",
-          "mean_range": 58.1,
-          "median_range": 51.5,
-          "p25": 39.4,
-          "p75": 67.0,
-          "max_observed": 135.3,
-          "sample_size": 71,
-          "confidence": "High",
-          "vs_normal_day": 0.87,
-          "direction": "down",
-          "direction_ar": "هبوط محتمل لـ AUDUSD"
-        }
-      ]
-    },
-    {
-      "datetime": "2026-06-24T02:30:00",
-      "date": "2026-06-24",
-      "day": "Wednesday",
-      "time": "02:30",
-      "currency": "AUD",
-      "event": "Employment Change",
-      "category": "Other",
-      "forecast": "30.3K",
-      "previous": "-18.6K",
-      "direction": {
-        "forecast_num": 30300.0,
-        "previous_num": -18600.0,
-        "bias": "bullish",
-        "bias_ar": "إيجابي لـ AUD",
-        "confidence": "high",
-        "reasoning_ar": "المتوقع 30300.0 أعلى من السابق -18600.0 — نمو اقتصادي يقوي العملة"
-      },
-      "pairs": [
-        {
-          "pair": "AUDUSD",
-          "mean_range": 55.2,
-          "median_range": 50.0,
-          "p25": 38.1,
-          "p75": 64.3,
-          "max_observed": 316.7,
-          "sample_size": 247,
-          "confidence": "High",
-          "vs_normal_day": 0.83,
-          "direction": "up",
-          "direction_ar": "صعود محتمل لـ AUDUSD"
-        }
-      ]
-    },
-    {
-      "datetime": "2026-06-25T13:30:00",
-      "date": "2026-06-25",
+      "datetime": "2026-07-02T13:30:00",
+      "date": "2026-07-02",
       "day": "Thursday",
       "time": "13:30",
       "currency": "USD",
-      "event": "Core PCE Price Index m/m",
+      "event": "Average Hourly Earnings m/m",
       "category": "Other",
       "forecast": "0.3%",
-      "previous": "0.2%",
+      "previous": "0.3%",
       "direction": {
         "forecast_num": 0.3,
-        "previous_num": 0.2,
-        "bias": "bullish",
-        "bias_ar": "إيجابي لـ USD",
-        "confidence": "high",
-        "reasoning_ar": "المتوقع 0.3 أعلى من السابق 0.2 — نمو اقتصادي يقوي العملة"
+        "previous_num": 0.3,
+        "bias": "neutral",
+        "bias_ar": "محايد",
+        "confidence": "low",
+        "reasoning_ar": "الفارق بين المتوقع (0.3) والسابق (0.3) صغير جداً، لا اتجاه واضح"
       },
       "pairs": [
         {
@@ -135,8 +67,8 @@
           "sample_size": 221,
           "confidence": "High",
           "vs_normal_day": 0.85,
-          "direction": "up",
-          "direction_ar": "صعود محتمل لـ USDJPY"
+          "direction": "neutral",
+          "direction_ar": "اتجاه غير محدد"
         },
         {
           "pair": "GBPUSD",
@@ -148,8 +80,8 @@
           "sample_size": 251,
           "confidence": "High",
           "vs_normal_day": 0.86,
-          "direction": "down",
-          "direction_ar": "هبوط محتمل لـ GBPUSD"
+          "direction": "neutral",
+          "direction_ar": "اتجاه غير محدد"
         },
         {
           "pair": "EURUSD",
@@ -161,8 +93,8 @@
           "sample_size": 227,
           "confidence": "High",
           "vs_normal_day": 0.85,
-          "direction": "down",
-          "direction_ar": "هبوط محتمل لـ EURUSD"
+          "direction": "neutral",
+          "direction_ar": "اتجاه غير محدد"
         },
         {
           "pair": "USDCAD",
@@ -174,8 +106,8 @@
           "sample_size": 216,
           "confidence": "High",
           "vs_normal_day": 0.82,
-          "direction": "up",
-          "direction_ar": "صعود محتمل لـ USDCAD"
+          "direction": "neutral",
+          "direction_ar": "اتجاه غير محدد"
         },
         {
           "pair": "USDCHF",
@@ -187,8 +119,8 @@
           "sample_size": 218,
           "confidence": "High",
           "vs_normal_day": 0.85,
-          "direction": "up",
-          "direction_ar": "صعود محتمل لـ USDCHF"
+          "direction": "neutral",
+          "direction_ar": "اتجاه غير محدد"
         },
         {
           "pair": "AUDUSD",
@@ -200,8 +132,8 @@
           "sample_size": 247,
           "confidence": "High",
           "vs_normal_day": 0.83,
-          "direction": "down",
-          "direction_ar": "هبوط محتمل لـ AUDUSD"
+          "direction": "neutral",
+          "direction_ar": "اتجاه غير محدد"
         },
         {
           "pair": "NZDUSD",
@@ -213,8 +145,8 @@
           "sample_size": 231,
           "confidence": "High",
           "vs_normal_day": 0.8,
-          "direction": "down",
-          "direction_ar": "هبوط محتمل لـ NZDUSD"
+          "direction": "neutral",
+          "direction_ar": "اتجاه غير محدد"
         }
       ]
     }
