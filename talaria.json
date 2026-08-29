@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generated_at": "2026-08-28T22:32:12.654521+00:00",
-    "generated_at_local": "2026-08-28T23:32:12.654528+01:00",
+    "generated_at": "2026-08-29T01:57:39.709134+00:00",
+    "generated_at_local": "2026-08-29T02:57:39.709141+01:00",
     "timezone": "Africa/Casablanca",
     "data_quality": "complete",
     "stats": {
@@ -231,15 +231,15 @@
       "weekly_change_pct": -2.595,
       "sma_20": 4412.98998,
       "sma_50": 4209.3,
-      "atr_14": 77.14286,
-      "daily_range": 192.5,
+      "atr_14": 77.17857,
+      "daily_range": 193.0,
       "trend": "bullish",
       "high_52w": 4640.7998,
       "low_52w": 3985.6001,
       "pdh": 4609.7002,
       "pdl": 4609.7002,
       "today_high": 4688.0,
-      "today_low": 4495.5,
+      "today_low": 4495.0,
       "range_position": 0.2,
       "extension_atr": 1.18,
       "rsi_14": 58.5
